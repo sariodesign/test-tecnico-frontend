@@ -16,6 +16,9 @@ Clonare il repository nella propria cartella di lavoro:
 
 ```sh
 git clone git@github.com:gasparigit/test-tecnico-frontend.git
+```
+
+```sh
 cd test-tecnico-frontend
 ```
 
@@ -23,14 +26,26 @@ Installare le dipendenze del progetto Laravel API eseguendo, in ordine:
 
 ```sh
 cd api
+```
+
+```sh
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php84-composer:latest \
     composer install --ignore-platform-reqs
+```
+
+```sh
 ./vendor/bin/sail up -d
+```
+
+```sh
 ./vendor/bin/sail composer install
+```
+
+```sh
 ./vendor/bin/sail artisan migrate --seed
 ```
 
@@ -44,11 +59,17 @@ Installare le dipendenze del progetto Nuxt 4 eseguendo, in ordine:
 
 ```sh
 cd ../frontend
+```
+
+```sh
 npm install
+```
+
+```sh
 npm run dev
 ```
 
-Se tutto è stato configurato correttamente, il frontend sarà accessibile all'indirizzo `http://localhost:3000` e le chiamate API saranno in grado di essere effettuate tramite il proxy di Nitro verso l'indirizzo `http://localhost:3000/api`.
+Se tutto è stato configurato correttamente, il frontend sarà accessibile all'indirizzo `http://localhost:3000` e le chiamate a `/api` verranno inoltrate dal proxy di Nitro al backend Laravel (`http://localhost:8080/api`).
 
 ## Il progetto
 
