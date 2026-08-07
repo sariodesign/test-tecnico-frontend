@@ -1,5 +1,11 @@
 # Test Tecnico - Frontend con backend Laravel
 
+Ciao! 👋 Questo repository contiene un test tecnico frontend: un mini-portale turistico ("Vivi Bugliano") costruito con Nuxt 4 su un backend Laravel già pronto.
+
+L'obiettivo è realizzare un'area pubblica con la lista e il dettaglio degli eventi (SSR + SEO) e un'area riservata dove gli utenti autenticati gestiscono i propri preferiti, curando in particolare la gestione della sessione/autenticazione in SSR, la qualità del codice, l'accessibilità e l'uso corretto dei design system (Bootstrap Italia per la parte pubblica, componenti shadcn-vue personalizzati per l'area riservata).
+
+I paragrafi che seguono spiegano come installare, avviare e consegnare il progetto, oltre ai dettagli su cosa costruire e come viene valutato.
+
 ## Prerequisiti
 
 L'installazione di questo progetto richiede i seguenti prerequisiti:
@@ -171,3 +177,29 @@ Bonus facoltativi (non richiesti):
 - i18n IT/EN
 - Ottimizzazioni performance
 - Dark mode nell'area personale
+
+## Chiusura e invio del progetto
+
+Fermare il frontend con `Ctrl+C` nel terminale in cui gira `npm run dev`, poi fermare i container Laravel Sail:
+
+```sh
+cd ../api
+```
+
+```sh
+./vendor/bin/sail down
+```
+
+Eliminare la cartella `./api/tmp`, che contiene i dati del database MariaDB (montata come volume su `/var/lib/mysql`) e non va inclusa nella consegna:
+
+```sh
+rm -rf ./tmp
+```
+
+Inviare il progetto in **uno** dei seguenti modi:
+
+- **Zip via email:** comprimere la cartella del progetto ed inviarla via email
+- **Fork Git:** creare un fork del repository e inviare il link
+- **Cartella cloud:** caricare il progetto su una cartella condivisa (Google Drive, Dropbox, OneDrive, ecc.) e inviare il link
+
+Se possibile, aggiornare questo file README con eventuali note, scelte implementative, pensieri o problemi riscontrati.
