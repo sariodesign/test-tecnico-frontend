@@ -202,4 +202,6 @@ Inviare il progetto in **uno** dei seguenti modi:
 - **Fork Git:** creare un fork del repository e inviare il link
 - **Cartella cloud:** caricare il progetto su una cartella condivisa (Google Drive, Dropbox, OneDrive, ecc.) e inviare il link
 
+L'indirizzo email a cui inviare il file ZIP o il link è `developers@gruppogaspari.it`
+
 Se possibile, aggiornare questo file README con eventuali note, scelte implementative, pensieri o problemi riscontrati.
