@@ -18,12 +18,6 @@ const fullDateFormat = new Intl.DateTimeFormat('it-IT', {
   month: 'long',
   year: 'numeric',
 })
-
-const eventCreatedDate = computed(() => fullDateFormat.format(new Date(props.event.created_at)))
-
-const dayLabel = computed(() => dateFormat.format(startDate.value))
-const startTime = computed(() => timeFormat.format(startDate.value))
-const endTime = computed(() => timeFormat.format(endDate.value))
 </script>
 
 <template>
@@ -34,9 +28,9 @@ const endTime = computed(() => timeFormat.format(endDate.value))
     <div class="it-card-body">
       <p class="it-card-subtitle font-monospace fs-6 fw-bold">
         <span class="visually-hidden">Data evento:</span>
-        <time :datetime="event.starts_at">{{ dayLabel }}</time>,
+        <time :datetime="event.starts_at">{{ formatDate(event.starts_at, { day: 'numeric', month: 'long' }) }}</time>,
         <span class="visually-hidden">Orario:</span>
-        <time :datetime="event.starts_at">{{ startTime }}</time> – <time :datetime="event.ends_at">{{ endTime }}</time>
+        <time :datetime="event.starts_at">{{ formatDate(event.starts_at, { hour: '2-digit', minute: '2-digit' }) }}</time> – <time :datetime="event.ends_at">{{ formatDate(event.ends_at, { hour: '2-digit', minute: '2-digit' }) }}</time>
       </p>
       <p class="it-card-text">{{ event.description }}</p>
       <footer class="it-card-related">
@@ -45,7 +39,7 @@ const endTime = computed(() => timeFormat.format(endDate.value))
             <span class="visually-hidden">Categoria: </span>{{ event.category }}
           </span>
         </div>
-        <time class="it-card-date" :datetime="eventCreatedDate">{{ eventCreatedDate }}</time>
+        <time class="it-card-date" :datetime="event.created_at">{{ formatDate(event.created_at) }}</time>
       </footer>
     </div>
     <div class="it-card-footer" aria-label="Link correlati:" v-if="isLoggedIn">
