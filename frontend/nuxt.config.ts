@@ -1,12 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 declare const process: { env: Record<string, string | undefined> }
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  css: [
-    'bootstrap-italia/dist/css/bootstrap-italia.min.css'
-  ],
   runtimeConfig: {
     laravelApiUrl: process.env.API_PROXY_TARGET ?? 'http://localhost:8080/api',
   },
@@ -14,5 +12,8 @@ export default defineNuxtConfig({
     /* devProxy: {
       '/api': { target: process.env.API_PROXY_TARGET ?? 'http://localhost:8081/api', changeOrigin: true },
     }, */
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
 })
