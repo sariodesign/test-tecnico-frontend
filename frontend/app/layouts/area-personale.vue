@@ -1,14 +1,34 @@
 <script lang="ts" setup>
 import '~/assets/css/tailwind.css'
 const { user, logout } = useAuth()
+
+const theme = useCookie<'light' | 'dark'>('theme', {
+  default: () => 'light',
+  maxAge: 60 * 60 * 24 * 365, // 1 anno
+})
+
+function toggleTheme() {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <header class="bg-brand text-white">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900" :data-theme="theme">
+    <header class="bg-brand text-white dark:bg-brand-dark">
       <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
         <span class="font-semibold">Area personale di {{ user?.name }}</span>
         <div class="flex items-center gap-4">
+          <button
+            type="button"
+            @click="toggleTheme"
+            :aria-pressed="theme === 'dark'"
+            aria-label="Attiva o disattiva tema scuro"
+            class="rounded-md p-2 hover:bg-white/10 transition-colors hover:cursor-pointer"
+          >
+            <span v-if="theme === 'dark'" aria-hidden="true">☀️</span>
+            <span v-else aria-hidden="true">🌙</span>
+          </button>
+
           <UiButton variant="outline" size="sm" @click="logout">Esci</UiButton>
         </div>
       </div>
