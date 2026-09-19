@@ -2,12 +2,12 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 const cardVariants = cva(
-  'rounded-lg bg-white transition-shadow',
+  'rounded-lg bg-white transition-shadow dark:bg-gray-700',
   {
     variants: {
       variant: {
-        elevated: 'shadow-sm hover:shadow-md border border-gray-100',
-        outlined: 'border-2 border-gray-200',
+        elevated: 'shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700',
+        outlined: 'border-2 border-gray-200 dark:border-gray-700',
       },
       padding: {
         sm: 'p-4',
