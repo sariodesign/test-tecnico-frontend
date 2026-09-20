@@ -7,7 +7,7 @@
                 <div class="col-sm-12">
                     <div class="it-brand-wrapper">
                     <a href="#" data-focus-mouse="false">
-                        <svg class="icon"><use xlink:href="/sprites.svg#it-code-circle"></use></svg>
+                        <svg class="icon"><use xlink:href="/sprites.svg#it-code-circle"/></svg>
                         <div class="it-brand-text">
                         <h2>Lorem Ipsum</h2>
                         <h3 class="d-none d-md-block">Inserire qui la tag line</h3>
@@ -42,16 +42,16 @@
                     <h4>Seguici su</h4>
                     <ul class="list-inline text-left social">
                         <li class="list-inline-item">
-                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-designers-italia"></use></svg><span class="visually-hidden">Designers Italia (link esterno)</span></a>
+                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-designers-italia"/></svg><span class="visually-hidden">Designers Italia (link esterno)</span></a>
                         </li>
                         <li class="list-inline-item">
-                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-twitter"></use></svg><span class="visually-hidden">X (link esterno)</span></a>
+                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-twitter"/></svg><span class="visually-hidden">X (link esterno)</span></a>
                         </li>
                         <li class="list-inline-item">
-                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-medium"></use></svg><span class="visually-hidden">Medium (link esterno)</span></a>
+                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-medium"/></svg><span class="visually-hidden">Medium (link esterno)</span></a>
                         </li>
                         <li class="list-inline-item">
-                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-behance"></use></svg><span class="visually-hidden">Behance (link esterno)</span></a>
+                        <a class="p-2 text-white" href="#"><svg class="icon icon-sm icon-white align-top"><use xlink:href="/sprites.svg#it-behance"/></svg><span class="visually-hidden">Behance (link esterno)</span></a>
                         </li>
                     </ul>
                     </div>

@@ -18,7 +18,7 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Selezione lingua: lingua selezionata</span>
                     <span>ITA</span>
-                    <svg class="icon d-none d-lg-block"><use href="/sprites.svg#it-expand"></use></svg>
+                    <svg class="icon d-none d-lg-block"><use href="/sprites.svg#it-expand"/></svg>
                   </a>
                   <div class="dropdown-menu">
                     <div class="row">
@@ -33,10 +33,10 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                     </div>
                   </div>
                 </div>
-                <NuxtLink class="btn btn-primary btn-icon mr-2" to="/accedi" v-if="!isLoggedIn">
+                <NuxtLink v-if="!isLoggedIn" class="btn btn-primary btn-icon mr-2" to="/accedi">
                   <span class="rounded-icon">
                     <svg class="icon icon-primary">
-                      <use href="/sprites.svg#it-user"></use>
+                      <use href="/sprites.svg#it-user"/>
                     </svg>
                   </span>
                   <span class="d-none d-lg-block">Accedi all'area personale</span>
@@ -45,14 +45,14 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                   <NuxtLink class="btn btn-primary btn-icon mr-2" to="/area-personale">
                     <span class="rounded-icon">
                       <svg class="icon icon-primary">
-                        <use href="/sprites.svg#it-user"></use>
+                        <use href="/sprites.svg#it-user"/>
                       </svg>
                     </span>
                     <span class="d-none d-lg-block">Area personale di {{ user?.name }}</span>
                   </NuxtLink>
-                  <button @click="logout" class="btn btn-primary btn-icon">
+                  <button class="btn btn-primary btn-icon" @click="logout">
                     <svg class="icon icon-white">
-                      <use href="/sprites.svg#it-logout"></use>
+                      <use href="/sprites.svg#it-logout"/>
                     </svg>
                     <span class="d-none d-lg-block">Esci</span>
                   </button>
@@ -72,7 +72,7 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                 <div class="it-brand-wrapper">
                   <NuxtLink to="/">
                     <svg class="icon" aria-hidden="true">
-                      <use href="/sprites.svg#it-pa"></use>
+                      <use href="/sprites.svg#it-pa"/>
                     </svg>
                     <div class="it-brand-text">
                       <div class="it-brand-title">Comune di Bugliano</div>
@@ -86,21 +86,21 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                       <li>
                         <NuxtLink to="#" aria-label="Facebook" target="_blank">
                           <svg class="icon">
-                            <use href="/sprites.svg#it-facebook"></use>
+                            <use href="/sprites.svg#it-facebook"/>
                           </svg>
                         </NuxtLink>
                       </li>
                       <li>
                         <NuxtLink to="#" aria-label="Github" target="_blank">
                           <svg class="icon">
-                            <use href="/sprites.svg#it-github"></use>
+                            <use href="/sprites.svg#it-github"/>
                           </svg>
                         </NuxtLink>
                       </li>
                       <li>
                         <NuxtLink to="#" aria-label="Twitter" target="_blank">
                           <svg class="icon">
-                            <use href="/sprites.svg#it-twitter"></use>
+                            <use href="/sprites.svg#it-twitter"/>
                           </svg>
                         </NuxtLink>
                       </li>
@@ -110,7 +110,7 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                     <span class="d-none d-md-block">Cerca</span>
                     <NuxtLink to="#" class="search-link rounded-icon" aria-label="Cerca nel sito">
                       <svg class="icon">
-                        <use href="/sprites.svg#it-search"></use>
+                        <use href="/sprites.svg#it-search"/>
                       </svg>
                     </NuxtLink>
                   </div>
@@ -128,15 +128,15 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
               <nav class="navbar navbar-expand-lg has-megamenu" aria-label="Navigazione principale">
                 <button class="custom-navbar-toggler" type="button" aria-controls="navC1" aria-label="Mostra/Nascondi la navigazione" data-bs-toggle="navbarcollapsible" data-bs-target="#navC1">
                   <svg class="icon">
-                    <use href="/sprites.svg#it-burger"></use>
+                    <use href="/sprites.svg#it-burger"/>
                   </svg>
                 </button>
-                <div class="navbar-collapsable" id="navC1" tabindex="-1">
+                <div id="navC1" class="navbar-collapsable" tabindex="-1">
                   <div class="close-div">
                     <button class="btn close-menu" type="button">
                       <span class="visually-hidden">Nascondi la navigazione</span>
                       <svg class="icon">
-                        <use href="/sprites.svg#it-close-big"></use>
+                        <use href="/sprites.svg#it-close-big"/>
                       </svg>
                     </button>
                   </div>

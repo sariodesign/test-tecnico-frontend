@@ -27,7 +27,7 @@ function goTo(page: number) {
           :disabled="currentPage <= 1"
           @click="goTo(currentPage - 1)"
         >
-          <svg class="icon icon-primary" aria-hidden="true"><use href="/sprites.svg#it-chevron-left"></use></svg>
+          <svg class="icon icon-primary" aria-hidden="true"><use href="/sprites.svg#it-chevron-left"/></svg>
           <span class="visually-hidden">Pagina precedente</span>
         </button>
       </li>
@@ -52,7 +52,7 @@ function goTo(page: number) {
           @click="goTo(currentPage + 1)"
         >
           <span class="visually-hidden">Pagina successiva</span>
-          <svg class="icon icon-primary" aria-hidden="true"><use href="/sprites.svg#it-chevron-right"></use></svg>
+          <svg class="icon icon-primary" aria-hidden="true"><use href="/sprites.svg#it-chevron-right"/></svg>
         </button>
       </li>
     </ul>

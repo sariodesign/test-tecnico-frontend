@@ -25,8 +25,9 @@ async function onSubmit() {
   try {
     await login(email.value, password.value)
     await navigateTo('/area-personale')
-  } catch (e: any) {
-    errorMsg.value = e?.data?.data?.message ?? 'Credenziali non valide'
+  } catch (e: unknown) {
+    const message = (e as { data?: { data?: { message?: string } } })?.data?.data?.message
+    errorMsg.value = message ?? 'Credenziali non valide'
   } finally {
     loading.value = false
   }
@@ -46,7 +47,7 @@ async function onSubmit() {
             <h1 class="display-1 mb-2">Autenticati</h1>
             <p class="mb-5">Da qui potrai verificare i tuoi dati ed accedere ai servizi da autenticato</p>
             <div class="col-12 col-md-8 col-lg-6 primary-bg-c1 p-5 rounded">
-              <form @submit.prevent="onSubmit" novalidate>
+              <form novalidate @submit.prevent="onSubmit">
   
                 <InputField
                   id="formEmail"
