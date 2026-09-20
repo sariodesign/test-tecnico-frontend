@@ -42,32 +42,33 @@ async function onSubmit() {
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-12">
+          <div class="col-12 mb-5">
             <h1 class="display-1 mb-2">Autenticati</h1>
             <p class="mb-5">Da qui potrai verificare i tuoi dati ed accedere ai servizi da autenticato</p>
-
-            <form @submit.prevent="onSubmit" novalidate class="mb-5">
-
-              <InputField
-                id="formEmail"
-                v-model="email"
-                label="Email"
-                type="email"
-                :error="errors.email"
-              />
-
-              <InputField
-                id="formPassword"
-                v-model="password"
-                label="Password"
-                type="password"
-                :error="errors.password"
-              />
-
-              <button type="submit" class="btn btn-primary" :disabled="loading">
-                {{ loading ? 'Accesso in corso…' : 'Accedi' }}
-              </button>
-            </form>
+            <div class="col-12 col-md-8 col-lg-6 primary-bg-c1 p-5 rounded">
+              <form @submit.prevent="onSubmit" novalidate>
+  
+                <InputField
+                  id="formEmail"
+                  v-model="email"
+                  label="Email"
+                  type="email"
+                  :error="errors.email"
+                />
+  
+                <InputField
+                  id="formPassword"
+                  v-model="password"
+                  label="Password"
+                  type="password"
+                  :error="errors.password"
+                />
+  
+                <button type="submit" class="btn btn-primary" :disabled="loading">
+                  {{ loading ? 'Accesso in corso…' : 'Accedi' }}
+                </button>
+              </form>
+            </div>
 
             <div v-if="errorMsg" role="alert" class="alert alert-danger">
               {{ errorMsg }}
