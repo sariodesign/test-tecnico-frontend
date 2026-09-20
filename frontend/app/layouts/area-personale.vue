@@ -32,6 +32,28 @@ function toggleTheme() {
           <UiButton variant="outline" size="sm" @click="logout">Esci</UiButton>
         </div>
       </div>
+      <nav aria-label="Navigazione area personale" class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-4xl mx-auto px-6">
+          <ul class="flex gap-6">
+            <li>
+              <NuxtLink
+                to="/"
+                class="inline-block py-3 text-sm text-gray-700 dark:text-gray-300 border-b-2 border-transparent hover:text-brand hover:border-brand transition-colors"
+              >
+                Home
+              </NuxtLink>
+            </li>
+            <li>
+              <NuxtLink
+                to="/eventi"
+                class="inline-block py-3 text-sm text-gray-700 dark:text-gray-300 border-b-2 border-transparent hover:text-brand hover:border-brand transition-colors"
+              >
+                Eventi
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main class="max-w-4xl mx-auto p-6">
       <slot />
