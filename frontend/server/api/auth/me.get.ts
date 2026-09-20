@@ -22,8 +22,9 @@ export default defineEventHandler(async (event) => {
             : response
 
         return { user }
-    } catch (error: any) {
-        if (error?.response?.status === 401) {
+    } catch (error: unknown) {
+        const status = (error as { response?: { status?: number } })?.response?.status
+        if (status === 401) {
             deleteCookie(event, 'auth_token')
             return { user: null }
         }

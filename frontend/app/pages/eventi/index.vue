@@ -36,10 +36,10 @@ const { data, pending, error } = await useFetch<{
 })
 
 function updateQuery(changes: Record<string, string | number | undefined>) {
-  const query = { ...route.query, ...changes }
-  Object.keys(query).forEach((k) => {
-    if (!query[k]) delete query[k]
-  })
+  const merged = { ...route.query, ...changes }
+  const query = Object.fromEntries(
+    Object.entries(merged).filter(([, value]) => value)
+  )
   router.push({ query })
 }
 
@@ -102,7 +102,7 @@ function goToPage(p: number) {
 
     <template v-else>
       <div class="row align-items-stretch">
-        <div class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4" v-for="event in events" :key="event.id">
+        <div v-for="event in events" :key="event.id" class="col-12 col-md-6 col-lg-4 mb-3 mb-md-4">
           <CardEvent class="h-100" :event="event" @toggle-favorite="toggleFavorite" />
         </div>
       </div>

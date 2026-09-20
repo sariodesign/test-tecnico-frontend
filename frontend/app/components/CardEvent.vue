@@ -1,23 +1,10 @@
 <script lang="ts" setup>
 import type { Event } from '~/types/event'
 
-const props = defineProps<{ event: Event }>()
-
+defineProps<{ event: Event }>()
 const emit = defineEmits<{ toggleFavorite: [event: Event] }>()
 
 const { isLoggedIn } = useAuth()
-
-const dateFormat = new Intl.DateTimeFormat('it-IT', { day: 'numeric', month: 'long' })
-const timeFormat = new Intl.DateTimeFormat('it-IT', { hour: '2-digit', minute: '2-digit' })
-
-const startDate = computed(() => new Date(props.event.starts_at))
-const endDate = computed(() => new Date(props.event.ends_at))
-
-const fullDateFormat = new Intl.DateTimeFormat('it-IT', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-})
 </script>
 
 <template>
@@ -42,7 +29,7 @@ const fullDateFormat = new Intl.DateTimeFormat('it-IT', {
         <time class="it-card-date" :datetime="event.created_at">{{ formatDate(event.created_at) }}</time>
       </footer>
     </div>
-    <div class="it-card-footer" aria-label="Link correlati:" v-if="isLoggedIn">
+    <div v-if="isLoggedIn" class="it-card-footer" aria-label="Link correlati:">
       <button
         type="button"
         class="btn btn-sm btn-outline-primary mt-2"
