@@ -61,7 +61,7 @@ async function removeFavorite(event: Event) {
       </p>
 
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <UiCard variant="outlined" v-for="event in favorites" :key="event.id">
+        <UiCard v-for="event in favorites" :key="event.id" variant="outlined">
           <div>
             <span class="inline-block text-xs font-medium text-brand bg-brand/10 rounded px-2 py-1 mb-2 dark:text-white dark:bg-gray-500">
               {{ event.category }}

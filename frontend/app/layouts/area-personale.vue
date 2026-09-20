@@ -20,10 +20,10 @@ function toggleTheme() {
         <div class="flex items-center gap-4">
           <button
             type="button"
-            @click="toggleTheme"
             :aria-pressed="theme === 'dark'"
             aria-label="Attiva o disattiva tema scuro"
             class="rounded-md p-2 hover:bg-white/10 transition-colors hover:cursor-pointer"
+            @click="toggleTheme"
           >
             <span v-if="theme === 'dark'" aria-hidden="true">☀️</span>
             <span v-else aria-hidden="true">🌙</span>

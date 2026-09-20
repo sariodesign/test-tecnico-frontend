@@ -25,7 +25,8 @@ useSeoMeta({
   <div class="container-xxl my-4">
     <p v-if="pending">Caricamento evento…</p>
     <template v-else-if="data">
-      <Breadcrumb :items="[
+      <Breadcrumb
+:items="[
         { label: 'Home', to: '/' },
         { label: 'Eventi', to: '/eventi' },
         { label: event.title },

@@ -19,7 +19,7 @@ onMounted(async () => {
     <div class="input-group">
       <span class="input-group-text">
         <svg class="icon icon-sm" aria-hidden="true">
-          <use href="/sprites.svg#it-search"></use>
+          <use href="/sprites.svg#it-search"/>
         </svg>
       </span>
       <label :for="id">{{ label }}</label>
