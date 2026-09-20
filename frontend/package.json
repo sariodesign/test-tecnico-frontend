@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^1.17.0",
+    "@nuxtjs/i18n": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "bootstrap-italia": "^2.18.3",
     "class-variance-authority": "^0.7.1",

@@ -20,5 +20,18 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-  modules: ['@nuxt/eslint'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/i18n'
+  ],
+
+  i18n: {
+    defaultLocale: 'it',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    locales: [
+      { code: 'it', name: 'Italiano', file: 'it.json' },
+      { code: 'en', name: 'English', file: 'en.json' },
+    ],
+  }
 })

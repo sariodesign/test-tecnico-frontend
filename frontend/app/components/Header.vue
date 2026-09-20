@@ -3,6 +3,24 @@ const route = useRoute()
 const { user, isLoggedIn, logout } = useAuth()
 
 const isEventiActive = computed(() => route.path.startsWith('/eventi'))
+
+const { locale, setLocale } = useI18n()
+
+/* const langDropdownRef = ref<HTMLElement | null>(null)
+
+onMounted(async () => {
+  const { Dropdown } = await import('bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js')
+  if (langDropdownRef.value) {
+    Dropdown.getOrCreateInstance(langDropdownRef.value)
+  }
+}) */
+
+const isLangOpen = ref(false)
+
+function selectLang(code: 'it' | 'en') {
+  setLocale(code)
+  isLangOpen.value = false
+}
 </script>
 
 <template>
@@ -14,8 +32,8 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
             <div class="it-header-slim-wrapper-content">
               <a class="d-lg-block navbar-brand" href="#">Ente appartenenza</a>
               <div class="it-header-slim-right-zone">
-                <div class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <!-- <div class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" ref="langDropdownRef" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="visually-hidden">Selezione lingua: lingua selezionata</span>
                     <span>ITA</span>
                     <svg class="icon d-none d-lg-block"><use href="/sprites.svg#it-expand"/></svg>
@@ -25,11 +43,47 @@ const isEventiActive = computed(() => route.path.startsWith('/eventi'))
                       <div class="col-12">
                         <div class="link-list-wrapper">
                           <ul class="link-list">
-                            <li><a class="dropdown-item list-item" href="#"><span>ITA <span class="visually-hidden">selezionata</span></span></a></li>
-                            <li><a class="dropdown-item list-item" href="#"><span>ENG</span></a></li>
+                            <li>
+                              <button type="button" class="dropdown-item list-item bg-white text-primary" @click="setLocale('it')">
+                                <span>ITA <span v-if="locale === 'it'" class="visually-hidden">selezionata</span></span>
+                              </button>
+                            </li>
+                            <li>
+                              <button type="button" class="dropdown-item list-item bg-white text-primary" @click="setLocale('en')">
+                                <span>ENG <span v-if="locale === 'en'" class="visually-hidden">selezionata</span></span>
+                              </button>
+                            </li>
                           </ul>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div> -->
+                <div class="nav-item dropdown">
+                  <button
+                    type="button"
+                    class="nav-link dropdown-toggle"
+                    :aria-expanded="isLangOpen"
+                    @click="isLangOpen = !isLangOpen"
+                  >
+                    <span class="visually-hidden">Selezione lingua: lingua selezionata</span>
+                    <span>{{ locale === 'it' ? 'ITA' : 'ENG' }}</span>
+                    <svg class="icon d-none d-lg-block"><use href="/sprites.svg#it-expand"></use></svg>
+                  </button>
+                  <div class="dropdown-menu" :class="{ show: isLangOpen }">
+                    <div class="link-list-wrapper">
+                      <ul class="link-list">
+                        <li>
+                          <button type="button" class="dropdown-item list-item" @click="selectLang('it')">
+                            <span>ITA <span v-if="locale === 'it'" class="visually-hidden">selezionata</span></span>
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" class="dropdown-item list-item" @click="selectLang('en')">
+                            <span>ENG <span v-if="locale === 'en'" class="visually-hidden">selezionata</span></span>
+                          </button>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>

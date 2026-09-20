@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Event } from '~/types/event'
+const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
@@ -68,7 +69,7 @@ function goToPage(p: number) {
 <template>
   <div class="container-xxl my-4">
     <Breadcrumb :items="[{ label: 'Home', to: '/' }, { label: 'Eventi' }]" />
-    <h1 class="mb-4">Eventi</h1>
+    <h1 class="mb-4">{{ t('nav.events') }}</h1>
 
     <div class="row mb-4">
       <div class="col-12 col-md-6 mb-3">
