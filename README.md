@@ -205,3 +205,56 @@ Inviare il progetto in **uno** dei seguenti modi:
 L'indirizzo email a cui inviare il file ZIP o il link è `developers@gruppogaspari.it`
 
 Se possibile, aggiornare questo file README con eventuali note, scelte implementative, pensieri o problemi riscontrati.
+
+## Decisioni tecniche
+
+- **BFF (Backend For Frontend)** — lo strato server di Nuxt (Nitro) fa da intermediario tra browser e Laravel. Il token vive in un cookie **httpOnly**, non raggiunge mai il client: non leggibile da JavaScript (difesa XSS) e mai serializzato nell'HTML. Il cookie viaggia con la richiesta del documento, quindi il server conosce l'utente già in SSR (nessun flash di stato non autenticato). `useRequestFetch` propaga il cookie durante l'SSR, dove `$fetch` non lo farebbe.
+- **`devProxy` sostituito da handler Nitro** — il `devProxy` esiste solo in sviluppo e non può leggere il cookie per iniettare il token. Gli handler Nitro funzionano anche in produzione e controllano l'intero flusso di autenticazione.
+- **Isolamento dei due design system** — Bootstrap Italia (area pubblica) e Tailwind (area riservata) sono separati per layout: BI caricato via `useHead` nel layout pubblico, Tailwind importato solo nel layout dell'area personale. Così i reset CSS non si calpestano.
+- **shadcn-vue in modalità manuale** — i componenti sono scritti a mano (pattern shadcn: cva + token) invece di usare il CLI, perché il modulo `shadcn-nuxt` impone Tailwind globale, che confliggerebbe con Bootstrap Italia.
+- **Niente libreria di validazione (JustValidate)** — per i campi required ho preferito validazione reattiva con lo stato Vue, evitando una libreria imperativa che manipola il DOM in contrasto col modello dichiarativo di Vue.
+- **Normalizzazione delle risposte nel BFF** — il layer server uniforma le risposte del backend (es. l'utente restituito in forme diverse tra `/login` e `/user`) così il client consuma sempre la stessa struttura.
+
+## Componenti
+
+**Area riservata (shadcn-vue, cva + token del Comune):**
+- `Button` — varianti `brand` / `outline` / `ghost`, taglie `sm` / `md` / `lg`
+- `Card` — varianti `elevated` / `outlined`
+- `ConfirmDialog` — dialog accessibile (reka-ui) per la conferma di rimozione
+
+I token (palette del Comune) sono definiti in `@theme` (Tailwind v4) e consumati dalle varianti cva.
+
+**Area pubblica (Bootstrap Italia):** header istituzionale, breadcrumb, card evento, paginazione, select e input di ricerca, incapsulati in componenti Vue riutilizzabili.
+
+## Accessibilità
+
+- Form con errori annunciati (`role="alert"`, `aria-invalid`, `aria-describedby`) e label associate agli input.
+- Dialog con focus trap, chiusura con Esc e attributi ARIA (via reka-ui).
+- `aria-current` su breadcrumb e navigazione; `<button>` invece di `<a>` per le azioni.
+- Elenco di definizioni (`<dl>`) semantico per i dati utente.
+
+## Funzionalità extra
+
+- **Dark mode** nell'area personale, con toggle e persistenza via cookie letto in SSR (nessun flash di tema al reload). Isolata all'area riservata.
+
+## Limiti noti
+
+- **Rinnovo token** — tra gli endpoint documentati non è previsto un endpoint di refresh, e il backend emette personal access token senza refresh token. La sessione è gestita via scadenza del cookie e re-login sul 401. Un rinnovo automatico richiederebbe un endpoint dedicato lato backend.
+- **FOUT dei font** — i font di Bootstrap Italia sono caricati via JS (`loadFonts`), quindi c'è un breve flash al primo caricamento. Mitigabile con il preload dei pesi principali.
+- **Validazione client** — volutamente minimale (campi required); la validazione autorevole resta quella del backend (risposte 422 di Laravel), già gestita.
+
+## Struttura del progetto
+
+```
+server/api/auth/       handler di autenticazione (login, logout, me)
+server/api/[...path]   proxy verso Laravel con iniezione del token
+app/composables/       useAuth
+app/middleware/        auth, guest
+app/plugins/           idratazione utente, init Bootstrap Italia
+app/components/        componenti area pubblica (Bootstrap Italia)
+app/components/ui/     componenti shadcn (Button, Card, ConfirmDialog)
+app/layouts/           default (pubblico), area-personale (Tailwind)
+app/pages/             eventi, eventi/[slug], accedi, area-personale
+app/utils/             cn, formatDate
+app/types/             tipi condivisi (event, form, user, breadcrumb)
+```
